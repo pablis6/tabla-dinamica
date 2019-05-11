@@ -1,3 +1,22 @@
+# Tabla
+Componente tabla generica y dinamica para n columnas y n filas y diferentes tipod de datos
+
+## Desarrollador
+Pablo Fernández: https://github.com/pablis6
+
+## Como utilizar
+El componente Tabla recibe dos propiedades:
+ - `columnas`: Un array de arrays de objetos. Es decir, un array en la que cada posicion es un array con cada fila de la cabecera. Cada array de fila tiene objetos del tipo:
+    - `name`: String con el nombre que aparecera en la cabecera,
+    - `rowspan`: numero de filas que se tiene que expandir,
+    - `colspan`: numero de columnas que se tiene que expandir,
+    - `className`: clase o clases que se necesitan para esa columna
+
+- `datos`: Un array de objetos. Es decir, un array en la que cada posicion es un objeto con cada fila de la tabla. Se permite que los datos sean String (se pinta directamente), objeto (se evalua y se pinta el hijo correspondiente)
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
