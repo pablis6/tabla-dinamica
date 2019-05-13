@@ -124,10 +124,14 @@ class Pruebas extends Component {
 
     }
 
+    filaSeleccionada(fila){
+        console.log("Tengo el control de: ", fila);
+    }
+
     render() {
         return (
             <div className="centrado">    
-                <Tabla columnas={this.state.columnas} datos={this.state.datos}></Tabla>
+                <Tabla columnas={this.state.columnas} datos={this.state.datos} onFilaSeleccionada={(fila) => this.filaSeleccionada(fila)}></Tabla>
             </div>
         );
     }

@@ -13,6 +13,7 @@ El componente Tabla recibe dos propiedades:
     - `className`: clase o clases que se necesitan para esa columna
 
 - `datos`: Un array de objetos. Es decir, un array en la que cada posicion es un objeto con cada fila de la tabla. Se permite que los datos sean String (se pinta directamente), objeto (se evalua y se pinta el hijo correspondiente)
+- `onFilaSeleccionada`: Funcion que devuelve la fila seleccionada
 
 
 

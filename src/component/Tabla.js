@@ -6,7 +6,7 @@ import Fila from './Fila';
 class Tabla extends Component {
     constructor(props) {
         super(props);
-
+        this.state = {filaSeleccionada: null}
     }
 
     componentWillMount() {
@@ -37,12 +37,17 @@ class Tabla extends Component {
 
     }
 
+    onFilaSeleccionada(fila){
+        this.setState({filaSeleccionada: fila});
+        this.props.onFilaSeleccionada(fila);
+    }
+
     render() {
-        var filasDatos = this.props.datos.map((fila, index) => {
-            return <Fila tipo='datos' key={index} fila={fila}></Fila>
-        });
         var filasCabecera = this.props.columnas.map((fila, index) => {
             return <Fila tipo='cabecera' key={index} fila={fila}></Fila>
+        });
+        var filasDatos = this.props.datos.map((fila, index) => {
+            return <Fila tipo='datos' key={index} fila={fila} filaSeleccionada={this.state.filaSeleccionada} onFilaSeleccionada={(fila) => this.onFilaSeleccionada(fila)}></Fila>
         });
         return (
             <table>
