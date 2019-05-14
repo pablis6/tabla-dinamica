@@ -1,3 +1,9 @@
+.centrado{
+    margin: auto;
+    margin-top: 10px;
+    width: 935px;
+}
+
 .colPrim{
     width: 150px;
 }
@@ -14,5 +20,24 @@
     width: 150px;
 }
 .colSex{
+    width: 150px;
+}
+
+td:nth-child(1){
+    width: 150px;
+}
+td:nth-child(2){
+    width: 150px;
+}
+td:nth-child(3){
+    width: 150px;
+}
+td:nth-child(4){
+    width: 150px;
+}
+td:nth-child(5){
+    width: 150px;
+}
+td:nth-child(6){
     width: 150px;
 }

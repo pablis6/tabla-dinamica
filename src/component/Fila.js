@@ -54,7 +54,7 @@ class Fila extends Component {
         else{ // si es tipo cabecera
             filaHTML = Object.keys(this.props.fila).map( (col, index) => {
                 return <th key={col} rowSpan={this.props.fila[col].rowspan} colSpan={this.props.fila[col].colspan} className={this.props.fila[col].className}>{this.props.fila[col].name}</th>;
-            })
+            });
         }
 
         var estiloFila = (this.props.tipo === 'datos' ? 'cursor-pointer ' : '') + (this.props.filaSeleccionada === this.props.fila ? 'active' : '');

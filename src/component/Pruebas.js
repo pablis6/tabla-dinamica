@@ -28,7 +28,11 @@ class Pruebas extends Component {
             name: 'Quinta y sexta',
             colspan: 2,
             className: ''
-        }, ]
+        },{
+            name: '',
+            rowspan: 2,
+            className: 'scroll'
+        } ]
         var colsHijas = [{
             name: 'Tercera',
             className: 'colTer'
@@ -131,7 +135,10 @@ class Pruebas extends Component {
     render() {
         return (
             <div className="centrado">    
-                <Tabla columnas={this.state.columnas} datos={this.state.datos} onFilaSeleccionada={(fila) => this.filaSeleccionada(fila)}></Tabla>
+                <Tabla columnas={this.state.columnas}
+                    datos={this.state.datos}
+                    scrollable={true}
+                    onFilaSeleccionada={(fila) => this.filaSeleccionada(fila)}></Tabla>
             </div>
         );
     }

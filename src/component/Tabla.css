@@ -4,9 +4,27 @@ table, table th, table td{
 }
 
 .active td{
-    background-color: yellow;
+    background-color: #e6ed94;
 }
 
 .cursor-pointer{
     cursor: pointer;
+}
+
+.table{
+    margin: 0;
+}
+.table.scrollable-table{
+    width: auto;
+}
+.scrollable-body{
+    max-height: 100px;
+    min-height: 100px;
+}
+.scrollable-body.scrollable-always{
+    overflow-y: scroll;
+}
+.scroll{
+    padding-left: 8px;
+    padding-right: 8px;
 }
