@@ -49,7 +49,7 @@ class Tabla extends Component {
             return <Fila tipo='cabecera' key={index} fila={fila} onFilaSeleccionada={()=>{}} scrollable={this.props.scrollable}></Fila>
         });
         var filasDatos = this.props.datos.map((fila, index) => {
-            return <Fila tipo='datos' key={index} fila={fila} filaSeleccionada={this.state.filaSeleccionada} onFilaSeleccionada={(fila) => this.onFilaSeleccionada(fila)}></Fila>
+            return <Fila tipo='datos' key={index} fila={fila} anchoCeldas={this.props.anchoCeldas} filaSeleccionada={this.state.filaSeleccionada} onFilaSeleccionada={(fila) => this.onFilaSeleccionada(fila)}></Fila>
         });
         return (
             <div className="bk-table">

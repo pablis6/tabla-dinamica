@@ -48,7 +48,7 @@ class Fila extends Component {
                 else if(typeof this.props.fila[col] === "object" && typeof this.props.fila[col].val == "string"){ //Importe
                     valor = formatter.format(this.props.fila[col].val);
                 }
-                return <td key={index+'-'+col}>{valor}</td>;
+                return <td key={index+'-'+col} className={this.props.anchoCeldas[index]}>{valor}</td>;
             })
         }
         else{ // si es tipo cabecera

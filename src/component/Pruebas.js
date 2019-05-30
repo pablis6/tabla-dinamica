@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Tabla from './Tabla';
-import './Pruebas.css';
+import './Pruebas.scss';
 
 class Pruebas extends Component {
     constructor(props) {
@@ -28,7 +28,7 @@ class Pruebas extends Component {
             name: 'Quinta y sexta',
             colspan: 2,
             className: ''
-        },{
+        }, {
             name: '',
             rowspan: 2,
             className: 'scroll'
@@ -87,11 +87,14 @@ class Pruebas extends Component {
                 'columnaQuinta': 'el dato quinto',
                 'columnaSexta': 'el dato quinto',
             }
-        ]
+        ];
+
+        var anchoCeldas = ["w250", "w250", "w75", "w75", "w75", "w75"]
         
             this.setState({
                 columnas: [lasColumnas, colsHijas],
-                datos: data
+            datos: data,
+            anchoCeldas: anchoCeldas
             })
 
         // fetch("https://api.punkapi.com/v2/beers")
@@ -138,6 +141,7 @@ class Pruebas extends Component {
                 <Tabla columnas={this.state.columnas}
                     datos={this.state.datos}
                     scrollable={true}
+                    anchoCeldas={this.state.anchoCeldas}
                     onFilaSeleccionada={(fila) => this.filaSeleccionada(fila)}></Tabla>
             </div>
         );
