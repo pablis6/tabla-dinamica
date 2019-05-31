@@ -9,6 +9,38 @@ class Pruebas extends Component {
             columnas: [],
             datos: []
         }
+        this.formatter = new Intl.NumberFormat('es-ES', {
+            style: 'currency',
+            currency: 'EUR',
+            currencyDisplay: 'code',
+            minimumFractionDigits: 2
+        });
+    }
+    
+
+    getSuma(lista, campoFiltro){
+        var sumatorio = 0;
+        lista.forEach(element => {
+            if(typeof element[campoFiltro] === 'string'){
+                sumatorio += Number(element[campoFiltro])
+            }
+            else if(typeof element[campoFiltro] === 'object' && element[campoFiltro].val){
+                sumatorio += Number(element[campoFiltro].val);
+            }
+        });
+
+        return sumatorio;
+    }
+    getSumaEuros(lista, campoFiltro){
+
+        
+
+        var sumatorio = 0;
+        lista.forEach(element => {
+            sumatorio += Number(element[campoFiltro].val);
+        });
+
+        return this.formatter.format(sumatorio);
     }
 
     componentWillMount() {
@@ -48,63 +80,78 @@ class Pruebas extends Component {
         }];
         var data = [
             {
-                'columnaPrimera': 'el dato primero',
-                'columnaSegunda': 'el dato segundo',
+                'columnaPrimera': "columna primera",
+                'columnaSegunda': {"currency": {"sd": "EUR"}, "val": "1000.00"},
                 'columnaTercera': {"currency": {"sd": "EUR"}, "val": "1000.00"},
-                'columnaCuarta': 'el dato cuarto',
-                'columnaQuinta': 'el dato quinto',
-                'columnaSexta': 'el dato quinto',
+                'columnaCuarta': {"currency": {"sd": "EUR"}, "val": "1000.00"},
+                'columnaQuinta': "15",
+                'columnaSexta': {"currency": {"sd": "EUR"}, "val": "1000.00"},
             },
             {
-                'columnaPrimera': 'el dato primero',
-                'columnaSegunda': 'el dato segundo',
-                'columnaTercera': 'el dato tercero',
-                'columnaCuarta': 'el dato cuarto',
-                'columnaQuinta': 'el dato quinto',
-                'columnaSexta': 'el dato quinto',
+                'columnaPrimera': "columna primera",
+                'columnaSegunda': {"currency": {"sd": "EUR"}, "val": "1000.00"},
+                'columnaTercera': {"currency": {"sd": "EUR"}, "val": "1000.00"},
+                'columnaCuarta': {"currency": {"sd": "EUR"}, "val": "1000.00"},
+                'columnaQuinta': "25",
+                'columnaSexta': {"currency": {"sd": "EUR"}, "val": "1000.00"},
             },
             {
-                'columnaPrimera': 'el dato primero',
-                'columnaSegunda': 'el dato segundo',
-                'columnaTercera': 'el dato tercero',
-                'columnaCuarta': 'el dato cuarto',
-                'columnaQuinta': 'el dato quinto',
-                'columnaSexta': 'el dato quinto',
+                'columnaPrimera': "columna primera",
+                'columnaSegunda': {"currency": {"sd": "EUR"}, "val": "1000.00"},
+                'columnaTercera': {"currency": {"sd": "EUR"}, "val": "1000.00"},
+                'columnaCuarta': {"currency": {"sd": "EUR"}, "val": "1000.00"},
+                'columnaQuinta': "10",
+                'columnaSexta': {"currency": {"sd": "EUR"}, "val": "1000.00"},
             },
             {
-                'columnaPrimera': 'el dato primero',
-                'columnaSegunda': 'el dato segundo',
-                'columnaTercera': 'el dato tercero',
-                'columnaCuarta': 'el dato cuarto',
-                'columnaQuinta': 'el dato quinto',
-                'columnaSexta': 'el dato quinto',
+                'columnaPrimera': "columna primera",
+                'columnaSegunda': {"currency": {"sd": "EUR"}, "val": "1000.00"},
+                'columnaTercera': {"currency": {"sd": "EUR"}, "val": "1000.00"},
+                'columnaCuarta': {"currency": {"sd": "EUR"}, "val": "1000.00"},
+                'columnaQuinta': "30",
+                'columnaSexta': {"currency": {"sd": "EUR"}, "val": "1000.00"},
             },
             {
-                'columnaPrimera': 'el dato primero',
-                'columnaSegunda': 'el dato segundo',
-                'columnaTercera': 'el dato tercero',
-                'columnaCuarta': 'el dato cuarto',
-                'columnaQuinta': 'el dato quinto',
-                'columnaSexta': 'el dato quinto',
+                'columnaPrimera': "columna primera",
+                'columnaSegunda': {"currency": {"sd": "EUR"}, "val": "1000.00"},
+                'columnaTercera': {"currency": {"sd": "EUR"}, "val": "1000.00"},
+                'columnaCuarta': {"currency": {"sd": "EUR"}, "val": "1000.00"},
+                'columnaQuinta': "95",
+                'columnaSexta': {"currency": {"sd": "EUR"}, "val": "1000.00"},
             }
         ];
 
-        var anchoCeldas = ["w250", "w250", "w75", "w75", "w75", "w75"]
-        
-            this.setState({
-                columnas: [lasColumnas, colsHijas],
-            datos: data,
-            anchoCeldas: anchoCeldas
-            })
+        var anchoCeldas = ["w250", "w250", "w75", "w75", "w75", "w75"];
 
-        // fetch("https://api.punkapi.com/v2/beers")
-        // .then(response => response.json())
-        // .then(data => {
-        //     this.setState({
-        //         columnas: lasColumnas,
-        //         datos: data
-        //     })
-        // })
+        var sumatorios = [{
+            value: 'TOTAL',
+            className: 'colPrim'
+        }, {
+            value: this.getSumaEuros(data, 'columnaSegunda'),
+            className: 'colSeg'
+        }, {
+            value: this.getSumaEuros(data, 'columnaTercera'),
+            className: 'colTer'
+        }, {
+            value: this.getSumaEuros(data, 'columnaCuarta'),
+            className: 'colCuar'
+        }, {
+            value: this.getSuma(data, 'columnaQuinta'),
+            className: 'colQuin'
+        }, {
+            value: this.getSumaEuros(data, 'columnaSexta'),
+            className: 'colSex'
+        }, {
+            value: '',
+            className: 'scroll'
+        } ];
+        
+        this.setState({
+            columnas: [lasColumnas, colsHijas],
+            datos: data,
+            anchoCeldas: anchoCeldas,
+            sumatorios: sumatorios
+        })
     }
 
     componentDidMount() {
@@ -142,6 +189,7 @@ class Pruebas extends Component {
                     datos={this.state.datos}
                     scrollable={true}
                     anchoCeldas={this.state.anchoCeldas}
+                    sumatorios={this.state.sumatorios}
                     onFilaSeleccionada={(fila) => this.filaSeleccionada(fila)}></Tabla>
             </div>
         );

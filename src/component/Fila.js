@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 class Fila extends Component {
 
@@ -51,9 +50,15 @@ class Fila extends Component {
                 return <td key={index+'-'+col} className={this.props.anchoCeldas[index]}>{valor}</td>;
             })
         }
-        else{ // si es tipo cabecera
+        else if(this.props.tipo === 'cabecera'){ // si es tipo cabecera
             filaHTML = Object.keys(this.props.fila).map( (col, index) => {
-                return <th key={col} rowSpan={this.props.fila[col].rowspan} colSpan={this.props.fila[col].colspan} className={this.props.fila[col].className}>{this.props.fila[col].name}</th>;
+                return <th key={'cabecera-'+col} rowSpan={this.props.fila[col].rowspan} colSpan={this.props.fila[col].colspan} className={this.props.fila[col].className}>{this.props.fila[col].name}</th>;
+            });
+        }
+        else if(this.props.tipo === 'totales'){ // si es tipo total
+            filaHTML = Object.keys(this.props.fila).map( (col, index) => {
+                console.log(this.props.fila[col]);
+                return <td key={'total-'+col} className={this.props.fila[col].className}>{this.props.fila[col].value}</td>;
             });
         }
 

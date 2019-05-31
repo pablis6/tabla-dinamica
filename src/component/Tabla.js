@@ -46,17 +46,20 @@ class Tabla extends Component {
 
     render() {
         var filasCabecera = this.props.columnas.map((fila, index) => {
-            return <Fila tipo='cabecera' key={index} fila={fila} onFilaSeleccionada={()=>{}} scrollable={this.props.scrollable}></Fila>
+            return <Fila tipo='cabecera' key={'cabecera-'+index} fila={fila} onFilaSeleccionada={()=>{}} scrollable={this.props.scrollable}></Fila>
         });
         var filasDatos = this.props.datos.map((fila, index) => {
-            return <Fila tipo='datos' key={index} fila={fila} anchoCeldas={this.props.anchoCeldas} filaSeleccionada={this.state.filaSeleccionada} onFilaSeleccionada={(fila) => this.onFilaSeleccionada(fila)}></Fila>
+            return <Fila tipo='datos' key={'dato-'+index} fila={fila} anchoCeldas={this.props.anchoCeldas} filaSeleccionada={this.state.filaSeleccionada} onFilaSeleccionada={(fila) => this.onFilaSeleccionada(fila)}></Fila>
         });
+        
+        if(this.props.sumatorios){
+            var filasTotal =  <Fila tipo='totales' fila={this.props.sumatorios} onFilaSeleccionada={()=>{}} scrollable={this.props.scrollable}></Fila>;
+        }
         return (
             <div className="bk-table">
-                <table className={"table "+this.props.scrollable ? 'scrollable-table' : ''}>
+                <table className={this.props.scrollable ? 'table scrollable-table' : 'table'}>
                     <thead>
                         {filasCabecera}
-                        {/* <Fila tipo='cabecera' fila={this.props.columnas}></Fila> */}
                     </thead>
                 </table>
                 <div className={this.props.scrollable ? "scrollable-body scrollable-always" : ''}>
@@ -66,6 +69,11 @@ class Tabla extends Component {
                         </tbody>
                     </table>
                 </div>
+                <table className='table with-total'>
+                    <tfoot>
+                        {filasTotal}
+                    </tfoot>
+                </table>
             </div>
         );
     }
